@@ -28,6 +28,8 @@ const EventList = () => {
     const closeEvent=()=>{
         setOpenEvent(null)
     }
+
+    if (isPending) return <p>Loading...</p>
   return (
     <div className='event-list'>
         <div className='event-search'>
@@ -38,7 +40,7 @@ const EventList = () => {
             <button>No pets allowed</button>
 
         </div>
-        {filteredItems?.map((event: Event)=> <div onClick={()=> showEvent(event)} className='single-event' key={event.id}>
+        {filteredItems > 0 && filteredItems?.map((event: Event)=> <div onClick={()=> showEvent(event)} className='single-event' key={event.id}>
             <p>Name: {event.title}</p>
             <p>Description: {event.description}</p>
             <p>Category: {event.category}</p>
