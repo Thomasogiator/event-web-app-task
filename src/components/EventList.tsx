@@ -16,7 +16,7 @@ const EventList = () => {
     const [openEvent, setOpenEvent] = useState<Event | null>(null)
     const [searchTerm, setSearchTerm] = useState("");
     const url = 'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
-    const {data, isPending} = useFetchEvents(url)
+    const {data, isPending, error, isError} = useFetchEvents(url)
     console.log(url)
     const filteredItems = data && data?.filter((item: Event) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -30,7 +30,7 @@ const EventList = () => {
         setOpenEvent(null)
     }
 
-    // if (isPending) return <p>Loading...</p>
+    if (isPending) return <p>Loading...</p>
   return (
     <div className='event-list'>
         <div className='event-search'>
@@ -41,7 +41,7 @@ const EventList = () => {
             <button>No pets allowed</button>
 
         </div>
-        {filteredItems > 0 && filteredItems?.map((event: Event)=> <div onClick={()=> showEvent(event)} className='single-event' key={event.id}>
+        {filteredItems?.map((event: Event)=> <div onClick={()=> showEvent(event)} className='single-event' key={event.id}>
             <p>Name: {event.title}</p>
             <p>Description: {event.description}</p>
             <p>Category: {event.category}</p>
