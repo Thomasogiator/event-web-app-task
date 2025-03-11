@@ -17,9 +17,9 @@ const EventList = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const {data, isPending, error, isError} = useFetchEvents('https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events')
 
-    const filteredItems = data?.filter((item: Event) =>
+    const filteredItems = data && data?.filter((item: Event) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    );
 
     const showEvent=(event: Event)=>{
         setOpenEvent(event)
