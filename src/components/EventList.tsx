@@ -33,7 +33,11 @@ const EventList = () => {
         <div className='event-search'>
             <input type="search" placeholder='search event by name' onChange={(e)=> setSearchTerm(e.target.value)}/>
         </div>
-        
+        <div>
+            <button>Pets allowed</button>
+            <button>No pets allowed</button>
+
+        </div>
         {filteredItems?.map((event: Event)=> <div onClick={()=> showEvent(event)} className='single-event' key={event.id}>
             <p>Name: {event.title}</p>
             <p>Description: {event.description}</p>
