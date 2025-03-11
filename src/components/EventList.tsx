@@ -15,8 +15,9 @@ export interface Event{
 const EventList = () => {
     const [openEvent, setOpenEvent] = useState<Event | null>(null)
     const [searchTerm, setSearchTerm] = useState("");
-    const {data, isPending, error, isError} = useFetchEvents('https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events')
-
+    const url = 'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
+    const {data, isPending, error, isError} = useFetchEvents(url)
+    console.log(url)
     const filteredItems = data && data?.filter((item: Event) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
